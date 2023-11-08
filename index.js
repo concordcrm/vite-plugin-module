@@ -1,20 +1,16 @@
 import babelGenerator from '@babel/generator'
 import parser from '@babel/parser'
-import path from 'path'
-import { fileURLToPath } from 'url'
 import GlobalVue from '@concordcrm/vite-plugin-global-vue'
+import path from 'path'
 
-import autoImportI18n from './replacers/autoImportI18n'
-import coreImports from './replacers/core'
-import requireConfirmation from './replacers/requireConfirmation'
-import scriptConfig from './replacers/scriptConfig'
-import showAlert from './replacers/showAlert'
-import useFetch from './replacers/useFetch'
+import autoImportI18n from './replacers/autoImportI18n.js'
+import coreImports from './replacers/core.js'
+import requireConfirmation from './replacers/requireConfirmation.js'
+import scriptConfig from './replacers/scriptConfig.js'
+import showAlert from './replacers/showAlert.js'
+import useFetch from './replacers/useFetch.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 const generate = babelGenerator.default
-const projectRootDir = path.resolve(__dirname, '../../../')
 
 const moduleAliasRegex = /~\/([a-zA-Z]+)\/(.*)/
 
@@ -27,10 +23,11 @@ const replacers = [
   useFetch,
 ]
 
-// eslint-disable-next-line no-unused-vars
-export default function AppPlugin(moduleName) {
+export default function AppPlugin(moduleName, moduleDir) {
+  const projectRootDir = path.resolve(moduleDir, '../../')
+
   return {
-    name: 'vite-plugin-app',
+    name: 'vite-plugin-module',
     config: () => ({
       plugins: [GlobalVue('3.3.8')],
 
