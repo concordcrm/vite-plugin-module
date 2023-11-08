@@ -1,0 +1,27 @@
+{
+  "name": "@concordcrm/vite-plugin-module",
+  "type": "module",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@babel/generator": "^7.23.0",
+    "@babel/parser": "^7.23.0",
+    "@babel/traverse": "^7.23.2",
+    "@babel/types": "^7.23.0",
+    "@concordcrm/vite-plugin-global-vue": "^1.0.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordcrm/vite-plugin-module.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/concordcrm/vite-plugin-module/issues"
+  },
+  "homepage": "https://github.com/concordcrm/vite-plugin-module#readme",
+  "description": ""
+}
