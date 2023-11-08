@@ -12,7 +12,7 @@ import useFetch from './replacers/useFetch.js'
 
 const generate = babelGenerator.default
 
-const moduleAliasRegex = /~\/([a-zA-Z]+)\/(.*)/
+const moduleAliasRegex = /@\/([a-zA-Z]+)\/(.*)/
 
 const replacers = [
   autoImportI18n,
@@ -24,7 +24,7 @@ const replacers = [
 ]
 
 export default function AppPlugin(moduleName, moduleDir) {
-  const projectRootDir = path.resolve(moduleDir, '../../')
+  const rootDir = path.resolve(moduleDir, '../../')
 
   return {
     name: 'vite-plugin-module',
@@ -35,7 +35,7 @@ export default function AppPlugin(moduleName, moduleDir) {
         alias: [
           {
             find: moduleAliasRegex,
-            replacement: projectRootDir + '/modules/$1/resources/js/$2',
+            replacement: rootDir + '/modules/$1/resources/js/$2',
           },
         ],
       },

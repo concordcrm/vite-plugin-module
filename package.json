@@ -1,7 +1,7 @@
 {
   "name": "@concordcrm/vite-plugin-module",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "dependencies": {
     "@babel/generator": "^7.23.0",
     "@babel/parser": "^7.23.0",
