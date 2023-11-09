@@ -37,6 +37,13 @@ export default function (ast) {
               objectProperties.push(
                 t.objectProperty(t.identifier('url'), firstArg)
               )
+
+              if (
+                node.arguments.length === 2 &&
+                t.isObjectExpression(node.arguments[1])
+              ) {
+                objectProperties.push(t.spreadElement(node.arguments[1]))
+              }
             } else if (t.isObjectExpression(firstArg)) {
               // If it's an object, assume it should be spread into the request options
               objectProperties.push(t.spreadElement(firstArg))

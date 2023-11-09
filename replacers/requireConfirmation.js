@@ -16,20 +16,14 @@ export default function (ast) {
         node.callee.name === 'requireConfirmation'
       ) {
         replaced = true
-        // Replace with Innoclapps.dialog().confirm()
+        // Replace with Innoclapps.confirm()
         path.replaceWith(
           t.callExpression(
             t.memberExpression(
-              t.callExpression(
-                t.memberExpression(
-                  t.identifier('Innoclapps'),
-                  t.identifier('dialog')
-                ),
-                []
-              ),
+              t.identifier('Innoclapps'),
               t.identifier('confirm')
             ),
-            node.arguments // pass along any arguments
+            node.arguments
           )
         )
       }
