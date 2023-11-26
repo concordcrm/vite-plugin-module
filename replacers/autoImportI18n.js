@@ -6,6 +6,7 @@ const traverse = babelTraverse.default
 export default function (ast) {
   let hasUseI18nImport = false
   let imported = false
+
   traverse(ast, {
     ImportDeclaration(path) {
       // First pass to check for any "useI18n" import
@@ -26,6 +27,7 @@ export default function (ast) {
         node.init.callee.name === 'useI18n'
       ) {
         imported = true
+
         node.init = t.callExpression(
           t.memberExpression(
             t.memberExpression(t.identifier('_app_'), t.identifier('i18n')),

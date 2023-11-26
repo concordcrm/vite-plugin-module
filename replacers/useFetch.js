@@ -6,6 +6,7 @@ const traverse = babelTraverse.default
 // route "useFetch" to Innoclapps.request()
 export default function (ast) {
   let replaced = false
+
   traverse(ast, {
     CallExpression(path) {
       const node = path.node

@@ -6,7 +6,6 @@ import path from 'path'
 import autoImportI18n from './replacers/autoImportI18n.js'
 import coreImports from './replacers/core.js'
 import requireConfirmation from './replacers/requireConfirmation.js'
-import scriptConfig from './replacers/scriptConfig.js'
 import showAlert from './replacers/showAlert.js'
 import useFetch from './replacers/useFetch.js'
 
@@ -18,7 +17,6 @@ const replacers = [
   autoImportI18n,
   coreImports,
   requireConfirmation,
-  scriptConfig,
   showAlert,
   useFetch,
 ]

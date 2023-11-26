@@ -16,6 +16,7 @@ export default function (ast) {
         node.callee.name === 'requireConfirmation'
       ) {
         replaced = true
+
         // Replace with Innoclapps.confirm()
         path.replaceWith(
           t.callExpression(

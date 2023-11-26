@@ -6,6 +6,7 @@ const traverse = babelTraverse.default
 // route "showAlert" to Innoclapps.success|info|error()
 export default function (ast) {
   let replaced = false
+
   traverse(ast, {
     CallExpression(path) {
       const node = path.node
