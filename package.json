@@ -1,7 +1,7 @@
 {
   "name": "@concordcrm/vite-plugin-module",
   "type": "module",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "dependencies": {
     "@babel/generator": "^7.23.0",
     "@babel/parser": "^7.23.0",
@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "vite": "^4.0.0"
+    "vite": "^5.0.0"
   },
   "repository": {
     "type": "git",
