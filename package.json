@@ -7,7 +7,7 @@
     "@babel/parser": "^7.23.0",
     "@babel/traverse": "^7.23.2",
     "@babel/types": "^7.23.0",
-    "@concordcrm/vite-plugin-global-vue": "^1.0.3"
+    "@concordcrm/vite-plugin-global-vue": "^1.0.5"
   },
   "main": "index.js",
   "scripts": {
