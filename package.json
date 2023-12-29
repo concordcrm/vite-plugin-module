@@ -1,13 +1,13 @@
 {
   "name": "@concordcrm/vite-plugin-module",
   "type": "module",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "dependencies": {
     "@babel/generator": "^7.23.0",
     "@babel/parser": "^7.23.0",
     "@babel/traverse": "^7.23.2",
     "@babel/types": "^7.23.0",
-    "@concordcrm/vite-plugin-global-vue": "^1.0.6"
+    "@concordcrm/vite-plugin-global-vue": "^1.0.7"
   },
   "main": "index.js",
   "scripts": {

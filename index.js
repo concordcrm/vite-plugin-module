@@ -1,9 +1,6 @@
 import babelGenerator from '@babel/generator'
 import parser from '@babel/parser'
-import GlobalVue, {
-  versionMatchRegex,
-} from '@concordcrm/vite-plugin-global-vue'
-import fs from 'fs'
+import globalVue from '@concordcrm/vite-plugin-global-vue'
 import path from 'path'
 
 import autoImportI18n from './replacers/autoImportI18n.js'
@@ -25,21 +22,17 @@ const replacers = [
 ]
 
 export default function AppPlugin(moduleName, moduleDir) {
-  const rootDir = path.resolve(moduleDir, '../../')
-
-  const vueVersion = fs
-    .readFileSync(`${rootDir}/config/app.php`, 'utf8')
-    .match(versionMatchRegex)[1]
+  const rootPath = path.resolve(moduleDir, '../../')
 
   return {
     name: 'vite-plugin-module',
     config: () => ({
-      plugins: [GlobalVue(vueVersion)],
+      plugins: [globalVue({ rootPath })],
       resolve: {
         alias: [
           {
             find: moduleAliasRegex,
-            replacement: rootDir + '/modules/$1/resources/js/$2',
+            replacement: rootPath + '/modules/$1/resources/js/$2',
           },
         ],
       },
