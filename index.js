@@ -24,60 +24,63 @@ const replacers = [
 export default function AppPlugin(moduleName, moduleDir) {
   const rootPath = path.resolve(moduleDir, '../../')
 
-  return {
-    name: 'vite-plugin-module',
-    config: () => ({
-      plugins: [globalVue({ rootPath })],
-      resolve: {
-        alias: [
-          {
-            find: moduleAliasRegex,
-            replacement: rootPath + '/modules/$1/resources/js/$2',
-          },
-        ],
-      },
-      build: {
-        rollupOptions: {
-          external: [
-            'vuex',
-            'vue-i18n',
-            'vue-router',
-            'core/i18n',
-            'core/store',
-            'core/route',
-            'core/router',
+  return [
+    globalVue({ rootPath }),
+    {
+      name: 'vite-plugin-module',
+      config: () => ({
+        resolve: {
+          alias: [
+            {
+              find: moduleAliasRegex,
+              replacement: rootPath + '/modules/$1/resources/js/$2',
+            },
           ],
         },
-      },
-    }),
-    transform(code, id) {
-      // Check if the file is a JavaScript or Vue file
-      if (!/\.(js|jsx|ts|tsx|vue)$/.test(id)) {
-        return
-      }
+        build: {
+          rollupOptions: {
+            external: [
+              'vuex',
+              'vue-i18n',
+              'vue-router',
+              'core/i18n',
+              'core/store',
+              'core/route',
+              'core/router',
+            ],
+          },
+        },
+      }),
 
-      if (id.includes('node_modules')) {
-        return
-      }
-
-      const ast = parser.parse(code, {
-        sourceType: 'module',
-        plugins: ['jsx'],
-      })
-
-      let hasChanges = false
-
-      replacers.forEach(replacer => {
-        if (replacer(ast)) {
-          hasChanges = true
+      transform(code, id) {
+        // Check if the file is a JavaScript or Vue file
+        if (!/\.(js|jsx|ts|tsx|vue)$/.test(id)) {
+          return
         }
-      })
 
-      if (hasChanges) {
-        const output = generate(ast, {})
+        if (id.includes('node_modules')) {
+          return
+        }
 
-        return output.code
-      }
+        const ast = parser.parse(code, {
+          sourceType: 'module',
+          plugins: ['jsx'],
+        })
+
+        let hasChanges = false
+
+        replacers.forEach(replacer => {
+          if (replacer(ast)) {
+            hasChanges = true
+          }
+        })
+
+        if (hasChanges) {
+          const output = generate(ast, {})
+
+          return output.code
+        }
+      },
     },
-  }
+  ]
 }
